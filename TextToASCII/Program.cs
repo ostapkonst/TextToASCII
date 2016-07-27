@@ -17,11 +17,7 @@ namespace TextToASCII
             using (Bitmap bitmap = new Bitmap(1, 1))
             using (Graphics graphics = Graphics.FromImage(bitmap))
             using (Font font = new Font("Arial", size, FontStyle.Bold))
-            {
-                graphics.TextRenderingHint = TextRenderingHint.SingleBitPerPixelGridFit;
                 return graphics.MeasureString(str, font).ToSize();
-            }
-
         }
 
         static int GetLeftBound(Bitmap btmp)
@@ -78,25 +74,25 @@ namespace TextToASCII
 
             using (Bitmap bitmap = new Bitmap(fsize.Width, fsize.Height))
             {
-                using (Graphics graphics = Graphics.FromImage(bitmap))
+                using (Graphics graph = Graphics.FromImage(bitmap))
                 using (Font font = new Font("Arial", size, FontStyle.Bold))
                 {
-                    graphics.TextRenderingHint = TextRenderingHint.SingleBitPerPixelGridFit;
-                    graphics.DrawString(str, font, Brushes.Black, 0f, 0f);
+                    graph.TextRenderingHint = TextRenderingHint.SingleBitPerPixelGridFit;
+                    graph.DrawString(str, font, Brushes.Black, 0f, 0f);
                 }
 
                 Rectangle rect = GetBounds(bitmap);
-                StringBuilder textRes = new StringBuilder();
-                for (int y = rect.Y; y < rect.Y + rect.Height; y++)
-                {
-                    if (textRes.Length > 0)
-                        textRes.AppendLine();
+                StringBuilder text = new StringBuilder();
 
-                    for (int x = rect.X; x < rect.X + rect.Width; x++)
-                        textRes.Append(bitmap.GetPixel(x, y).A > 0 ? "*" : " ");
+                for (int y = 0; y < rect.Height; y++)
+                {
+                    if (text.Length > 0) text.AppendLine();
+
+                    for (int x = 0; x < rect.Width; x++)
+                        text.Append(bitmap.GetPixel(rect.X + x, rect.Y + y).A > 0 ? "*" : " ");
                 }
 
-                return textRes.ToString();
+                return text.ToString();
             }
         }
 
