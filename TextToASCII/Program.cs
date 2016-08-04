@@ -12,7 +12,7 @@ namespace TextToASCII
 {
     class Program
     {
-        static Size GetAsciiSize(string str, int size)
+        private static Size GetAsciiSize(string str, int size)
         {
             using (Bitmap bitmap = new Bitmap(1, 1))
             using (Graphics graphics = Graphics.FromImage(bitmap))
@@ -20,7 +20,7 @@ namespace TextToASCII
                 return graphics.MeasureString(str, font).ToSize();
         }
 
-        static int GetLeftBound(Bitmap btmp)
+        private static int GetLeftBound(Bitmap btmp)
         {
             for (int x = 0; x < btmp.Width; x++)
                 for (int y = 0; y < btmp.Height; y++)
@@ -30,7 +30,7 @@ namespace TextToASCII
             return 0;
         }
 
-        static int GetTopBound(Bitmap btmp)
+        private static int GetTopBound(Bitmap btmp)
         {
             for (int y = 0; y < btmp.Height; y++)
                 for (int x = 0; x < btmp.Width; x++)
@@ -40,7 +40,7 @@ namespace TextToASCII
             return 0;
         }
 
-        static int GetRightBound(Bitmap btmp)
+        private static int GetRightBound(Bitmap btmp)
         {
             for (int x = btmp.Width - 1; x >= 0; x--)
                 for (int y = 0; y < btmp.Height; y++)
@@ -50,7 +50,7 @@ namespace TextToASCII
             return btmp.Width - 1;
         }
 
-        static int GetBottomBound(Bitmap btmp)
+        private static int GetBottomBound(Bitmap btmp)
         {
             for (int y = btmp.Height - 1; y >= 0; y--)
                 for (int x = 0; x < btmp.Width; x++)
@@ -60,7 +60,7 @@ namespace TextToASCII
             return btmp.Height - 1;
         }
 
-        static Rectangle GetBounds(Bitmap btmp)
+        private static Rectangle GetBounds(Bitmap btmp)
         {
             int x = GetLeftBound(btmp), y = GetTopBound(btmp);
             int width = GetRightBound(btmp) - x + 1, height = GetBottomBound(btmp) - y + 1;
@@ -68,7 +68,7 @@ namespace TextToASCII
             return new Rectangle(x, y, width, height);
         }
 
-        static string GetASCII(string str, int size)
+        public static string GetASCII(string str, int size)
         {
             Size fsize = GetAsciiSize(str, size);
 
@@ -98,19 +98,9 @@ namespace TextToASCII
 
         static void Main(string[] args)
         {
-            int size;
-            string str;
+            string str = File.ReadAllText("input.txt");
 
-            using (StreamReader sr = new StreamReader("input.txt"))
-            {
-                size = Int32.Parse(sr.ReadLine());
-                str = sr.ReadToEnd();
-            }
-
-            string res = GetASCII(str, size);
-
-            using (StreamWriter sw = new StreamWriter("output.txt"))
-                sw.Write(res);
+            File.WriteAllText("output.txt", GetASCII(str, 10));
         }
     }
 }
