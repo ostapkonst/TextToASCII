@@ -10,13 +10,13 @@ using System.IO;
 
 namespace TextToASCII
 {
-    class Program
+    static class Program
     {
         private static Size GetAsciiSize(string str, int size)
         {
-            using (Bitmap bitmap = new Bitmap(1, 1))
-            using (Graphics graphics = Graphics.FromImage(bitmap))
-            using (Font font = new Font("Arial", size, FontStyle.Bold))
+            using (var bitmap = new Bitmap(1, 1))
+            using (var graphics = Graphics.FromImage(bitmap))
+            using (var font = new Font("Arial", size, FontStyle.Bold))
                 return graphics.MeasureString(str, font).ToSize();
         }
 
@@ -68,7 +68,7 @@ namespace TextToASCII
             return new Rectangle(x, y, width, height);
         }
 
-        public static string GetASCII(string str, int size)
+        public static string GetAscii(string str, int size)
         {
             Size fsize = GetAsciiSize(str, size);
 
@@ -100,7 +100,7 @@ namespace TextToASCII
         {
             string str = File.ReadAllText("input.txt");
 
-            File.WriteAllText("output.txt", GetASCII(str, 10));
+            File.WriteAllText("output.txt", GetAscii(str, 10));
         }
     }
 }
