@@ -12,6 +12,29 @@ namespace TextToASCII
 {
     static class Program
     {
+        public static void About()
+        {
+            Console.WriteLine("TextToASCII Version 1.1 Copyright (c) 2016 Konstantinov Ostap");
+        }
+
+        public static void InvalidArgument()
+        {
+            Console.Error.WriteLine("Error: Invalid Argument");
+        }
+
+        public static void InvalidCommand()
+        {
+            Console.Error.WriteLine("Error: Invalid Command");
+        }
+
+        public static void Help()
+        {
+            Console.WriteLine("Usage: TextToASCII <command> [input] [output] [size]\n"
+                + "Commands: -h Help\n"
+                + "Examples: TextToASCII -h\n"
+                + "TextToASCII.exe input.txt ouput.txt 10");
+        }
+
         private static Size GetAsciiSize(string str, int size)
         {
             using (var bitmap = new Bitmap(1, 1))
@@ -98,9 +121,40 @@ namespace TextToASCII
 
         static void Main(string[] args)
         {
-            string str = File.ReadAllText("input.txt");
+            switch (args.Length)
+            {
+                case 0:
+                    About();
+                    break;
 
-            File.WriteAllText("output.txt", GetAscii(str, 10));
+                case 1:
+                    switch (args[0])
+                    {
+                        case "-h":
+                            Help();
+                            break;
+                        default:
+                            InvalidArgument();
+                            break;
+                    }
+                    break;
+
+                case 3:
+                    int size;
+                    if (File.Exists(args[0]) && Int32.TryParse(args[2], out size))
+                    {
+                        string str = File.ReadAllText(args[0]);
+                        string tmp = GetAscii(str, size);
+                        File.WriteAllText(args[1], tmp);
+                    }
+                    else
+                        InvalidCommand();
+                    break;
+
+                default:
+                    InvalidArgument();
+                    break;
+            }
         }
     }
 }
