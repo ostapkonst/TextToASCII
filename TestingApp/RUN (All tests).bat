@@ -1,4 +1,4 @@
 @echo off
-:: Запуск всех тестов из папки Input для программы TextToASCII для size = 10
+:: ╨Ч╨░╨┐╤Г╤Б╨║ ╨▓╤Б╨╡╤Е ╤В╨╡╤Б╤В╨╛╨▓ ╨╕╨╖ ╨┐╨░╨┐╨║╨╕ Input ╨┤╨╗╤П ╨┐╤А╨╛╨│╤А╨░╨╝╨╝╤Л TextToASCII ╨┤╨╗╤П size = 10
 TestingApp.exe TextToASCII.exe 10
 pause
