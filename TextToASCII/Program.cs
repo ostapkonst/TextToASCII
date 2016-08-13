@@ -29,7 +29,7 @@ namespace TextToASCII
             Console.WriteLine("Usage: TextToASCII <command> [size] [input] [output]\n"
                 + "Commands: -h Help\n"
                 + "Examples: TextToASCII -h\n"
-                + "TextToASCII.exe input.txt ouput.txt 10");
+                + "TextToASCII.exe 10 input.txt output.txt");
         }
 
         private static Size GetAsciiSize(string str, uint size)
