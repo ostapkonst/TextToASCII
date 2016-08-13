@@ -1,0 +1,6 @@
+C:\Users\Ostap\Source\Repos\TextToASCII\TextToASCII\bin\Debug\TextToASCII.exe.config
+C:\Users\Ostap\Source\Repos\TextToASCII\TextToASCII\bin\Debug\TextToASCII.exe
+C:\Users\Ostap\Source\Repos\TextToASCII\TextToASCII\bin\Debug\TextToASCII.pdb
+C:\Users\Ostap\Source\Repos\TextToASCII\TextToASCII\obj\Debug\TextToASCII.csprojResolveAssemblyReference.cache
+C:\Users\Ostap\Source\Repos\TextToASCII\TextToASCII\obj\Debug\TextToASCII.exe
+C:\Users\Ostap\Source\Repos\TextToASCII\TextToASCII\obj\Debug\TextToASCII.pdb

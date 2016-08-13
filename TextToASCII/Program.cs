@@ -143,7 +143,8 @@ namespace TextToASCII
                 case 3:
                     uint size;
                     if (File.Exists(args[1])
-                        && uint.TryParse(args[0], out size))
+                        && uint.TryParse(args[0], out size)
+                        && size > 0)
 
                         File.WriteAllText(
                             args[2],
