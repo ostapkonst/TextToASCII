@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace TextToASCII
 {
@@ -31,7 +32,7 @@ namespace TextToASCII
                 + "TextToASCII.exe input.txt ouput.txt 10");
         }
 
-        private static Size GetAsciiSize(string str, int size)
+        private static Size GetAsciiSize(string str, uint size)
         {
             using (var bitmap = new Bitmap(1, 1))
             using (var graphics = Graphics.FromImage(bitmap))
@@ -87,8 +88,12 @@ namespace TextToASCII
             return new Rectangle(x, y, width, height);
         }
 
-        public static string GetAscii(string str, int size)
+        public static string GetAscii(string str, uint size)
         {
+            if (str == "") return "";
+
+            if (size == 1) return Regex.Replace(str, @"\S", "*");
+
             Size fsize = GetAsciiSize(str, size);
 
             using (Bitmap bitmap = new Bitmap(fsize.Width, fsize.Height))
@@ -136,10 +141,9 @@ namespace TextToASCII
                     break;
 
                 case 3:
-                    int size;
+                    uint size;
                     if (File.Exists(args[1])
-                        && int.TryParse(args[0], out size)
-                        && size > 4)
+                        && uint.TryParse(args[0], out size))
 
                         File.WriteAllText(
                             args[2],
