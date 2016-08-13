@@ -90,7 +90,7 @@ namespace TextToASCII
 
         public static string GetAscii(string str, uint size)
         {
-            if (str == "") return "";
+            if (str == "" || size < 1) return "";
 
             if (size == 1) return Regex.Replace(str, @"\S", "*");
 
@@ -143,8 +143,7 @@ namespace TextToASCII
                 case 3:
                     uint size;
                     if (File.Exists(args[1])
-                        && uint.TryParse(args[0], out size)
-                        && size > 0)
+                        && uint.TryParse(args[0], out size))
 
                         File.WriteAllText(
                             args[2],
