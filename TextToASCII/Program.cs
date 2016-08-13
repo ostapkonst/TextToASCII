@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
+using System.Text;
 
 namespace TextToASCII
 {
@@ -141,12 +137,14 @@ namespace TextToASCII
 
                 case 3:
                     int size;
-                    if (File.Exists(args[0]) && Int32.TryParse(args[2], out size))
-                    {
-                        string str = File.ReadAllText(args[0]);
-                        string tmp = GetAscii(str, size);
-                        File.WriteAllText(args[1], tmp);
-                    }
+                    if (File.Exists(args[0])
+                        && int.TryParse(args[2], out size)
+                        && size > 4)
+
+                        File.WriteAllText(
+                            args[1],
+                            GetAscii(File.ReadAllText(args[0]),
+                            size));
                     else
                         InvalidCommand();
                     break;
