@@ -26,7 +26,7 @@ namespace TextToASCII
 
         public static void Help()
         {
-            Console.WriteLine("Usage: TextToASCII <command> [input] [output] [size]\n"
+            Console.WriteLine("Usage: TextToASCII <command> [size] [input] [output]\n"
                 + "Commands: -h Help\n"
                 + "Examples: TextToASCII -h\n"
                 + "TextToASCII.exe input.txt ouput.txt 10");
