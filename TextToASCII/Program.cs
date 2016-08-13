@@ -137,13 +137,13 @@ namespace TextToASCII
 
                 case 3:
                     int size;
-                    if (File.Exists(args[0])
-                        && int.TryParse(args[2], out size)
+                    if (File.Exists(args[1])
+                        && int.TryParse(args[0], out size)
                         && size > 4)
 
                         File.WriteAllText(
-                            args[1],
-                            GetAscii(File.ReadAllText(args[0]),
+                            args[2],
+                            GetAscii(File.ReadAllText(args[1]),
                             size));
                     else
                         InvalidCommand();
